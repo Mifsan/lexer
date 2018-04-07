@@ -11,16 +11,10 @@ namespace Lexer
 
         public String TokenValue { get; private set; }
 
-        public Token(TokenType tokenType, String token)
+        public Token(TokenType tokenType, String tokenValue = null)
         {
             TokenType = tokenType;
-            TokenValue = token;
-        }
-
-        public Token(TokenType tokenType)
-        {
-            TokenValue = null;
-            TokenType = tokenType;
+            TokenValue = tokenValue;
         }
 
         public override string ToString()

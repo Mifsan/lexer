@@ -15,7 +15,7 @@ namespace Lexer
 
             foreach (var token in tokens)
             {
-                Console.WriteLine(token.TokenType + " - " + token.TokenValue);
+                Console.WriteLine(token.ToString());
             }
         }
     }

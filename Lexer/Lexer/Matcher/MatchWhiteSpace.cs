@@ -18,12 +18,7 @@ namespace Lexer
                 tokenizer.Consume();
             }
 
-            if (foundWhiteSpace)
-            {
-                return new Token(TokenType.WhiteSpace);
-            }
-
-            return null;
+            return foundWhiteSpace ? new Token(TokenType.WhiteSpace) : null;
         }
     }
 }

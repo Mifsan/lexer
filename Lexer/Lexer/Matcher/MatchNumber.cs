@@ -75,13 +75,7 @@ namespace Lexer
                 tokenizer.Consume();
             }
 
-            if (num != null)
-            {
-                return num;
-            }
-
-            return null;
-
+            return num != null ? num : null;
         }
     }
 }

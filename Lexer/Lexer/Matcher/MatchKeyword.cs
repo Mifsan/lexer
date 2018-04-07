@@ -50,12 +50,7 @@ namespace Lexer
                 found = true;
             }
 
-            if (found)
-            {
-                return new Token(TokenType, Match);
-            }
-
-            return null;
+            return found ? new Token(TokenType, Match) : null;
         }
     }
 }

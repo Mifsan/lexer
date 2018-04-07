@@ -38,12 +38,7 @@ namespace Lexer
                 }
             }
 
-            if (str.Length > 0)
-            {
-                return new Token(TokenType.StringValue, str.ToString());
-            }
-
-            return null;
+            return str.Length > 0 ? new Token(TokenType.StringValue, str.ToString()) : null;
         }
     }
 }
