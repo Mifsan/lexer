@@ -32,13 +32,32 @@ namespace Lexer
                     tokenizer.Consume();
                 }
 
+                if (tokenizer.End())
+                {
+                    return null;
+                }
+
                 if (tokenizer.Current == StringDelim)
                 {
                     tokenizer.Consume();
                 }
             }
 
-            return str.Length > 0 ? new Token(TokenType.StringValue, str.ToString()) : null;
+            TokenType tokenType;
+
+            if (StringDelim == TIC)
+            {
+                tokenType = TokenType.CharValue;
+                if (str.Length > 1)
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                tokenType = TokenType.StringValue;
+            }
+            return str.Length > 0 ? new Token(tokenType, StringDelim + str.ToString() + StringDelim) : null;
         }
     }
 }

@@ -7,49 +7,78 @@ namespace Lexer
 {
     public enum TokenType
     {
-        Void,
-        WhiteSpace,
-        LBracket,
-        RBracket,
+        Unknown,
+
         Plus,
         Minus,
-        Equals,
-        HashTag,
-        Identifier,
-        Comma,
-        OpenParenth,
-        CloseParenth,
-        Asterix,
-        Slash,
-        Carat,
-        DeRef,
-        Ampersand,
-        GreaterThan,
-        LessThan,
-        SemiColon,
-        If,
-        Return,
-        While,
-        Else,
-        ScopeStart,
-        EOF,
-        For,
-        Float,
-        FloatValue,
+        Multiply,
+        Division,
+        Mod,
+        Power,
+
+        Assignment,
+        MinusAssignment,
+        PlusAssignment,
+        MultiplyAssignment,
+        DivisionAssignment,
+        PowerAssignment,
+
+        Equivalence,
+        NotEquivalence,
+        MoreOrEquivalence,
+        LessOrEquivalence,
+
+        More,
+        Less,
+
+        Not,
+        And,
+        Or,
+
         Dot,
+        Comma,
+        Semicolon,
+        Colon,
+
+        LRoundBracket,
+        RRoundBracket,
+        LCurlyBracket,
+        RCurlyBracket,
+        LSquareBracket,
+        RSquareBracket,
+
+        OpenBlockComment,
+        CloseBlockComment,
+        OpenLineComment,
+
+        Void,
+        Int,
+        Float,
+        Boolean,
+        Char,
+        String,
+
+        If,
+        Else,
+
+        While,
+        For,
+
+        Return,
+
         True,
         False,
-        Boolean,
-        Or,
-        Int,
+
+        Identifier,
+
         IntValue,
-        Char,
+        FloatValue,
+
         CharValue,
-        String,
         StringValue,
-        Compare,
-        NotCompare,
-        LSquareBracket,
-        RSquareBracket
+
+        WhiteSpace,
+
+        EOF,
     }
 }

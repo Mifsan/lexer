@@ -29,6 +29,14 @@ namespace Lexer
                     yield return current;
                 }
 
+                if (!Tokenizer.End())
+                {
+                    if (current.TokenType == TokenType.OpenBlockComment)
+                    {
+                        yield return new Token(TokenType.CloseBlockComment, "*/");
+                    }
+                }
+
                 current = Next();
             }
         }
@@ -57,29 +65,43 @@ namespace Lexer
 
             var specialCharacters = new List<IMatcher>
             {
-                new MatchKeyword(TokenType.DeRef, "->"),
-                new MatchKeyword(TokenType.LBracket, "{"),
-                new MatchKeyword(TokenType.RBracket, "}"),
-                new MatchKeyword(TokenType.LSquareBracket, "["),
-                new MatchKeyword(TokenType.RSquareBracket, "]"),
                 new MatchKeyword(TokenType.Plus, "+"),
                 new MatchKeyword(TokenType.Minus, "-"),
-                new MatchKeyword(TokenType.NotCompare, "!="),
-                new MatchKeyword(TokenType.Compare, "=="),
-                new MatchKeyword(TokenType.Equals, "="),
-                new MatchKeyword(TokenType.HashTag, "#"),
-                new MatchKeyword(TokenType.Comma, ","),
-                new MatchKeyword(TokenType.OpenParenth, "("),
-                new MatchKeyword(TokenType.CloseParenth, ")"),
-                new MatchKeyword(TokenType.Asterix, "*"),
-                new MatchKeyword(TokenType.Slash, "/"),
-                new MatchKeyword(TokenType.Carat, "^"),
-                new MatchKeyword(TokenType.Ampersand, "&"),
-                new MatchKeyword(TokenType.GreaterThan, ">"),
-                new MatchKeyword(TokenType.LessThan, "<"),
+                new MatchKeyword(TokenType.Multiply, "*"),
+                new MatchKeyword(TokenType.Division, "/"),
+                new MatchKeyword(TokenType.Mod, "%"),
+                new MatchKeyword(TokenType.Power, "^"),
+
+                new MatchKeyword(TokenType.Assignment, "="),
+                new MatchKeyword(TokenType.MinusAssignment, "-="),
+                new MatchKeyword(TokenType.PlusAssignment, "+="),
+                new MatchKeyword(TokenType.MultiplyAssignment, "*="),
+                new MatchKeyword(TokenType.DivisionAssignment, "/="),
+                new MatchKeyword(TokenType.PowerAssignment, "^="),
+
+                new MatchKeyword(TokenType.Equivalence, "=="),
+                new MatchKeyword(TokenType.NotEquivalence, "!="),
+                new MatchKeyword(TokenType.MoreOrEquivalence, ">="),
+                new MatchKeyword(TokenType.LessOrEquivalence, "<="),
+
+                new MatchKeyword(TokenType.More, ">"),
+                new MatchKeyword(TokenType.Less, "<"),
+
+                new MatchKeyword(TokenType.Not, "!"),
+                new MatchKeyword(TokenType.And, "&&"),
                 new MatchKeyword(TokenType.Or, "||"),
-                new MatchKeyword(TokenType.SemiColon, ";"),
+
                 new MatchKeyword(TokenType.Dot, "."),
+                new MatchKeyword(TokenType.Comma, ","),
+                new MatchKeyword(TokenType.Semicolon, ";"),
+                new MatchKeyword(TokenType.Colon, ":"),
+
+                new MatchKeyword(TokenType.LRoundBracket, "("),
+                new MatchKeyword(TokenType.RRoundBracket, ")"),
+                new MatchKeyword(TokenType.LCurlyBracket, "{"),
+                new MatchKeyword(TokenType.RCurlyBracket, "}"),
+                new MatchKeyword(TokenType.LSquareBracket, "["),
+                new MatchKeyword(TokenType.RSquareBracket, "]"),
             };
 
             keywordMatchers.ForEach(keyword =>
@@ -91,6 +113,8 @@ namespace Lexer
 
             matchers.Add(new MatchString(MatchString.QUOTE));
             matchers.Add(new MatchString(MatchString.TIC));
+            matchers.Add(new MatchComment(MatchComment.BLOCK_COMMENT));
+            matchers.Add(new MatchComment(MatchComment.LINE_COMMENT));
             matchers.AddRange(specialCharacters);
             matchers.AddRange(keywordMatchers);
             matchers.AddRange(new List<IMatcher>

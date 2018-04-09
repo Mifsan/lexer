@@ -23,17 +23,20 @@ namespace Lexer
                 tokenizer.Consume();
             }
 
+            TokenType tokenType = TokenType.Unknown;
+
             if (current == null)
             {
                 return null;
             }
 
-            if (SpecialCharacters.Any(c => current.StartsWith(c.Match)))
+            if (Char.IsLetter(current, 0))
             {
-                throw new Exception(String.Format("Cannot start a word with a special character {0}", current));
+                tokenType = TokenType.Identifier;
             }
 
-            return new Token(TokenType.Identifier, current);
+            return new Token(tokenType, current);
+
         }
     }
 }

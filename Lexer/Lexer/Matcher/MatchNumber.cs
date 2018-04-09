@@ -52,6 +52,14 @@ namespace Lexer
                     }
                 }
 
+                if (!tokenizer.End())
+                {
+                    if (Char.IsLetter(tokenizer.Current, 0))
+                    {
+                        return null;
+                    }
+                }
+
                 if (isFloat)
                 {
                     return new Token(TokenType.FloatValue, numberValue);
@@ -75,7 +83,7 @@ namespace Lexer
                 tokenizer.Consume();
             }
 
-            return num != null ? num : null;
+            return num != null ? num : null;    
         }
     }
 }

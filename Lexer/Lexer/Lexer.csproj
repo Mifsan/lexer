@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Matcher\IMatcher.cs" />
     <Compile Include="Lexer.cs" />
+    <Compile Include="Matcher\MatchComment.cs" />
     <Compile Include="Matcher\MatcherBase.cs" />
     <Compile Include="Matcher\MatchKeyword.cs" />
     <Compile Include="Matcher\MatchNumber.cs" />
